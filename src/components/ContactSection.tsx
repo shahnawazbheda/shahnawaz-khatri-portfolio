@@ -11,14 +11,17 @@ import {
   Linkedin,
   Twitter,
   Instagram,
+  MessageCircle,
   CheckCircle2,
   Clock,
   Briefcase,
   AlertCircle
 } from 'lucide-react';
 import { PERSONAL_INFO, SOCIAL_ITEMS } from '../data/portfolioData';
-import emailjs from '@emailjs/browser';
-import { EMAILJS_CONFIG, isEmailJSConfigured } from '../config/emailjs';
+
+// Default WhatsApp receiver number (with country code, no spaces or symbols).
+// Change this if the default number needs to be updated later.
+const WHATSAPP_NUMBER = '919558362840'; // 91 = India country code + 9558362840
 
 export const ContactSection: React.FC = () => {
   const [copiedEmail, setCopiedEmail] = useState(false);
@@ -28,11 +31,8 @@ export const ContactSection: React.FC = () => {
     subject: '',
     message: ''
   });
-  const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle');
   const [errorMessage, setErrorMessage] = useState('');
-  const [activationNotice, setActivationNotice] = useState(false);
-  const [sentViaFallback, setSentViaFallback] = useState(false);
 
   const handleCopyEmail = () => {
     navigator.clipboard.writeText(PERSONAL_INFO.email);
@@ -48,8 +48,23 @@ export const ContactSection: React.FC = () => {
     }
   };
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  const buildWhatsAppMessage = () => {
+    const name = formData.name.trim();
+    const email = formData.email.trim();
+    const subject = formData.subject.trim() || 'a general inquiry';
+    const message = formData.message.trim();
+
+    return `Hi Shahnawaz, my name is ${name} (${email}). I'm reaching out about ${subject}. ${message}`;
+  };
+
+  const getWhatsAppUrl = () => {
+    const text = encodeURIComponent(buildWhatsAppMessage());
+    return `https://wa.me/${WHATSAPP_NUMBER}?text=${text}`;
+  };
+
+  const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
+
     if (!formData.name.trim() || !formData.email.trim() || !formData.message.trim()) {
       setErrorMessage('Please fill in your name, email, and message.');
       setSubmitStatus('error');
@@ -63,106 +78,17 @@ export const ContactSection: React.FC = () => {
       return;
     }
 
-    setIsSubmitting(true);
     setErrorMessage('');
-    setActivationNotice(false);
-    setSentViaFallback(false);
 
-    try {
-      if (isEmailJSConfigured()) {
-        // Send directly via EmailJS (https://www.emailjs.com/)
-        const templateParams = {
-          to_name: PERSONAL_INFO.name,
-          to_email: PERSONAL_INFO.email,
-          from_name: formData.name.trim(),
-          from_email: formData.email.trim(),
-          subject: formData.subject.trim() || 'General Inquiry',
-          message: formData.message.trim(),
-          name: formData.name.trim(),
-          email: formData.email.trim(),
-          reply_to: formData.email.trim(),
-        };
+    // Open WhatsApp in a new tab with the prefilled message
+    window.open(getWhatsAppUrl(), '_blank', 'noopener,noreferrer');
 
-        const result = await emailjs.send(
-          EMAILJS_CONFIG.serviceId,
-          EMAILJS_CONFIG.templateId,
-          templateParams,
-          EMAILJS_CONFIG.publicKey
-        );
-
-        if (result.status === 200 || result.text === 'OK') {
-          setSubmitStatus('success');
-          setActivationNotice(false);
-          setSentViaFallback(false);
-          return;
-        } else {
-          throw new Error(`EmailJS returned status: ${result.status} (${result.text})`);
-        }
-      }
-
-      // If EmailJS credentials are not yet set in .env / config, use FormSubmit fallback token
-      const FORMSUBMIT_TOKEN = '6ee312f11078fab75b6229fb51c6d63a';
-      const response = await fetch(`https://formsubmit.co/ajax/${FORMSUBMIT_TOKEN}`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          'Accept': 'application/json'
-        },
-        body: JSON.stringify({
-          "Name": formData.name.trim(),
-          "Email": formData.email.trim(),
-          "Subject": formData.subject.trim() || 'General Inquiry',
-          "Message": formData.message.trim(),
-          _subject: `Portfolio Contact: ${formData.subject.trim() || 'General Inquiry'} - ${formData.name.trim()}`,
-          _template: 'box',
-          _captcha: 'false'
-        })
-      });
-
-      const data = await response.json();
-
-      if (response.ok && (data.success === 'true' || data.success === true)) {
-        setSubmitStatus('success');
-        setActivationNotice(false);
-        setSentViaFallback(false);
-      } else if (data.message && (data.message.includes('Activation') || data.message.includes('Activate') || data.message.includes('confirm'))) {
-        setSubmitStatus('success');
-        setActivationNotice(true);
-      } else {
-        throw new Error(data.message || 'Submission failed');
-      }
-    } catch (err: unknown) {
-      const errObj = err as { message?: string; text?: string };
-      console.warn('Real push encountered an issue, falling back to mail client:', err);
-      setSubmitStatus('error');
-      setSentViaFallback(true);
-      const isConfigIssue = !isEmailJSConfigured();
-      setErrorMessage(
-        isConfigIssue
-          ? 'EmailJS is ready! Please enter your Service ID, Template ID, and Public Key in .env or src/config/emailjs.ts to send with EmailJS.'
-          : (errObj.message || errObj.text || 'Could not send email automatically. Opening mail app instead.')
-      );
-
-      const mailtoUrl = `mailto:${PERSONAL_INFO.email}?subject=${encodeURIComponent(
-        `Portfolio Contact: ${formData.subject.trim() || 'General Inquiry'} - ${formData.name.trim()}`
-      )}&body=${encodeURIComponent(
-        `Hi Shahnawaz,\n\n${formData.message}\n\nBest regards,\n\nName :- ${formData.name}\nEmail :- ${formData.email}\nSubject :- ${formData.subject || 'General Inquiry'}`
-      )}`;
-      const link = document.createElement('a');
-      link.href = mailtoUrl;
-      link.target = '_blank';
-      link.rel = 'noreferrer';
-      link.click();
-    } finally {
-      setIsSubmitting(false);
-    }
+    setSubmitStatus('success');
   };
 
   const handleResetForm = () => {
     setFormData({ name: '', email: '', subject: '', message: '' });
     setSubmitStatus('idle');
-    setActivationNotice(false);
-    setSentViaFallback(false);
   };
 
   return (
@@ -341,13 +267,13 @@ export const ContactSection: React.FC = () => {
                 <div className="w-14 h-14 rounded-full bg-emerald-500/20 border border-emerald-500/40 text-emerald-400 flex items-center justify-center mx-auto shadow-[0_0_25px_rgba(16,185,129,0.3)]">
                   <CheckCircle2 className="w-7 h-7" />
                 </div>
-                <h4 className="text-xl font-bold text-white">Email Sent Successfully!</h4>
+                <h4 className="text-xl font-bold text-white">WhatsApp Opened!</h4>
 
                 {/* Submitted Data Summary Preview */}
                 <div className="p-4 rounded-xl bg-white/5 border border-white/10 max-w-lg mx-auto text-left text-xs space-y-2.5">
                   <div className="flex justify-between border-b border-white/10 pb-2">
-                    <span className="text-white/50">Recipient:</span>
-                    <span className="text-blue-400 font-semibold font-mono">{PERSONAL_INFO.email}</span>
+                    <span className="text-white/50">Sending To:</span>
+                    <span className="text-emerald-400 font-semibold font-mono">+{WHATSAPP_NUMBER}</span>
                   </div>
                   <div className="flex justify-between border-b border-white/10 pb-2">
                     <span className="text-white/50">Sender Name:</span>
@@ -367,35 +293,9 @@ export const ContactSection: React.FC = () => {
                   </div>
                 </div>
 
-                {activationNotice ? (
-                  <div className="p-4 rounded-xl bg-amber-500/10 border border-amber-500/30 text-amber-200 text-xs max-w-lg mx-auto text-left space-y-2.5">
-                    <p className="font-bold text-sm text-amber-300 flex items-center gap-1.5">
-                      <Sparkles className="w-4 h-4 text-amber-400 shrink-0" />
-                      One-Time Email Activation Link Sent
-                    </p>
-                    <p className="text-amber-200/90 leading-relaxed">
-                      FormSubmit has sent a 1-click confirmation email to <strong className="text-amber-100 underline">{PERSONAL_INFO.email}</strong> containing an <strong>&quot;Activate Form&quot;</strong> button.
-                    </p>
-                    <div className="p-2.5 bg-black/40 rounded-lg border border-amber-500/20 text-[11px] text-amber-100/90 leading-relaxed">
-                      👉 <strong>Action Required:</strong> Check your Gmail inbox now and click <strong>&quot;Activate Form&quot;</strong> just once. After you click it once, FormSubmit activates your email permanently, and all future messages will arrive directly with your clean form data and <strong>no links</strong>!
-                    </div>
-                    <div className="pt-1">
-                      <a
-                        href="https://mail.google.com"
-                        target="_blank"
-                        rel="noreferrer"
-                        className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-lg bg-amber-500/20 hover:bg-amber-500/30 text-amber-200 font-medium transition-colors"
-                      >
-                        <Mail className="w-3.5 h-3.5" />
-                        Open Gmail to Activate
-                      </a>
-                    </div>
-                  </div>
-                ) : (
-                  <p className="text-xs sm:text-sm text-white/70 max-w-md mx-auto leading-relaxed">
-                    Your message has been directly sent to <strong className="text-blue-400">{PERSONAL_INFO.email}</strong> with your email <strong className="text-white">({formData.email})</strong> configured for direct replies.
-                  </p>
-                )}
+                <p className="text-xs sm:text-sm text-white/70 max-w-md mx-auto leading-relaxed">
+                  A WhatsApp chat should have opened in a new tab with your message pre-filled. Just hit send there to reach me directly.
+                </p>
 
                 <div className="pt-3 flex flex-col sm:flex-row items-center justify-center gap-3">
                   <button
@@ -405,14 +305,13 @@ export const ContactSection: React.FC = () => {
                     Send Another Message
                   </button>
                   <a
-                    href={`mailto:${PERSONAL_INFO.email}?subject=${encodeURIComponent(
-                      `Portfolio Contact: ${formData.subject || 'General Inquiry'} - ${formData.name}`
-                    )}&body=${encodeURIComponent(
-                      `Hi Shahnawaz,\n\n${formData.message}\n\nBest regards,\n\nName :- ${formData.name}\nEmail :- ${formData.email}\nSubject :- ${formData.subject || 'General Inquiry'}`
-                    )}`}
-                    className="px-5 py-2.5 rounded-xl bg-white/10 hover:bg-white/20 text-white text-xs font-medium border border-white/10 transition-colors"
+                    href={getWhatsAppUrl()}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="px-5 py-2.5 rounded-xl bg-white/10 hover:bg-white/20 text-white text-xs font-medium border border-white/10 transition-colors inline-flex items-center gap-1.5"
                   >
-                    Open in Gmail Client
+                    <MessageCircle className="w-3.5 h-3.5 text-emerald-400" />
+                    Reopen WhatsApp
                   </a>
                 </div>
               </div>
@@ -504,20 +403,10 @@ export const ContactSection: React.FC = () => {
                   <div className="flex flex-wrap items-center gap-3">
                     <button
                       type="submit"
-                      disabled={isSubmitting}
-                      className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-3 rounded-xl bg-blue-600 hover:bg-blue-700 active:scale-[0.99] text-white text-sm font-semibold shadow-[0_0_20px_rgba(37,99,235,0.4)] hover:shadow-[0_0_25px_rgba(37,99,235,0.6)] transition-all duration-200 cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed"
+                      className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-3 rounded-xl bg-emerald-600 hover:bg-emerald-700 active:scale-[0.99] text-white text-sm font-semibold shadow-[0_0_20px_rgba(16,185,129,0.4)] hover:shadow-[0_0_25px_rgba(16,185,129,0.6)] transition-all duration-200 cursor-pointer"
                     >
-                      {isSubmitting ? (
-                        <>
-                          <span className="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin" />
-                          <span>Sending to {PERSONAL_INFO.email}...</span>
-                        </>
-                      ) : (
-                        <>
-                          <Send className="w-4 h-4" />
-                          <span>Send Real Email</span>
-                        </>
-                      )}
+                      <MessageCircle className="w-4 h-4" />
+                      <span>Send via WhatsApp</span>
                     </button>
 
                     <a
@@ -536,7 +425,7 @@ export const ContactSection: React.FC = () => {
 
                   <span className="text-[11px] text-white/50 flex items-center gap-1.5 font-mono">
                     <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 shrink-0" />
-                    <span>Delivers to: <strong className="text-white/80 font-normal">{PERSONAL_INFO.email}</strong></span>
+                    <span>Delivers to: <strong className="text-white/80 font-normal">+{WHATSAPP_NUMBER}</strong></span>
                   </span>
                 </div>
               </form>
