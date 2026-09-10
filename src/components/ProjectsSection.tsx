@@ -1,15 +1,15 @@
 import React, { useState, useMemo, useEffect } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
-import { 
-  Github, 
-  ExternalLink, 
-  X, 
-  ZoomIn, 
-  Search, 
-  Sparkles, 
-  LayoutGrid, 
-  List, 
-  ChevronLeft, 
+import {
+  Github,
+  ExternalLink,
+  X,
+  ZoomIn,
+  Search,
+  Sparkles,
+  LayoutGrid,
+  List,
+  ChevronLeft,
   ChevronRight,
   Code2,
   CheckCircle2,
@@ -40,7 +40,7 @@ export const ProjectsSection: React.FC = () => {
     return PROJECTS_DATA.filter((project) => {
       const matchesCategory = activeCategory === 'All' || project.category === activeCategory;
       const query = searchQuery.trim().toLowerCase();
-      const matchesSearch = !query || 
+      const matchesSearch = !query ||
         project.title.toLowerCase().includes(query) ||
         project.description.toLowerCase().includes(query) ||
         (project.category && project.category.toLowerCase().includes(query)) ||
@@ -104,7 +104,7 @@ export const ProjectsSection: React.FC = () => {
 
   return (
     <section id="project" className="relative pt-10 pb-10 px-4 sm:px-6 md:px-12 max-w-7xl mx-auto z-10">
-      
+
       {/* Section Header */}
       <div className="text-center max-w-3xl mx-auto mb-12">
         <motion.div
@@ -133,7 +133,7 @@ export const ProjectsSection: React.FC = () => {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6, delay: 0.1 }}
-          className="mt-3 text-sm sm:text-base text-white/70 max-w-2xl mx-auto font-normal"
+          className="mt-3 text-sm sm:text-base text-slate-200 max-w-2xl mx-auto font-normal"
         >
           Explore a curated selection of full-stack web platforms, healthcare systems, and client software engineered with <span className="text-blue-400 font-medium">Next.js</span>, <span className="text-blue-400 font-medium">React</span>, and modern architectures.
         </motion.p>
@@ -155,11 +155,10 @@ export const ProjectsSection: React.FC = () => {
               <button
                 key={cat}
                 onClick={() => setActiveCategory(cat)}
-                className={`px-4 py-1.5 rounded-xl text-xs sm:text-sm font-medium transition-all duration-200 cursor-pointer ${
-                  isActive
+                className={`px-4 py-1.5 rounded-xl text-xs sm:text-sm font-medium transition-all duration-200 cursor-pointer ${isActive
                     ? 'bg-blue-600 text-white shadow-[0_0_15px_rgba(37,99,235,0.6)] border border-blue-400'
-                    : 'bg-white/5 text-white/70 hover:text-white hover:bg-white/10 border border-white/5'
-                }`}
+                    : 'bg-white/5 text-slate-200 hover:text-white hover:bg-white/10 border border-white/10'
+                  }`}
               >
                 {cat}
                 {cat === 'All' && ` (${PROJECTS_DATA.length})`}
@@ -171,18 +170,18 @@ export const ProjectsSection: React.FC = () => {
         {/* Search Bar & View Mode Toggle */}
         <div className="flex items-center gap-3 w-full lg:w-auto">
           <div className="relative flex-1 sm:w-64">
-            <Search className="w-4 h-4 text-white/40 absolute left-3 top-1/2 -translate-y-1/2 pointer-events-none" />
+            <Search className="w-4 h-4 text-slate-400 absolute left-3 top-1/2 -translate-y-1/2 pointer-events-none" />
             <input
               type="text"
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
               placeholder="Search tech, title, or keyword..."
-              className="w-full pl-9 pr-8 py-1.5 bg-black/60 border border-white/10 focus:border-blue-500 rounded-xl text-xs sm:text-sm text-white placeholder-white/40 focus:outline-none transition-colors"
+              className="w-full pl-9 pr-8 py-1.5 bg-black/60 border border-white/15 focus:border-blue-500 rounded-xl text-xs sm:text-sm text-white placeholder-slate-400 focus:outline-none transition-colors"
             />
             {searchQuery && (
               <button
                 onClick={() => setSearchQuery('')}
-                className="absolute right-2.5 top-1/2 -translate-y-1/2 text-white/40 hover:text-white"
+                className="absolute right-2.5 top-1/2 -translate-y-1/2 text-slate-400 hover:text-white"
               >
                 <X className="w-3.5 h-3.5" />
               </button>
@@ -194,18 +193,16 @@ export const ProjectsSection: React.FC = () => {
             <button
               onClick={() => setViewMode('grid')}
               aria-label="Grid View"
-              className={`p-1.5 rounded-lg transition-colors cursor-pointer ${
-                viewMode === 'grid' ? 'bg-blue-600 text-white shadow-sm' : 'text-white/60 hover:text-white'
-              }`}
+              className={`p-1.5 rounded-lg transition-colors cursor-pointer ${viewMode === 'grid' ? 'bg-blue-600 text-white shadow-sm' : 'text-slate-300 hover:text-white'
+                }`}
             >
               <LayoutGrid className="w-4 h-4" />
             </button>
             <button
               onClick={() => setViewMode('list')}
               aria-label="List View"
-              className={`p-1.5 rounded-lg transition-colors cursor-pointer ${
-                viewMode === 'list' ? 'bg-blue-600 text-white shadow-sm' : 'text-white/60 hover:text-white'
-              }`}
+              className={`p-1.5 rounded-lg transition-colors cursor-pointer ${viewMode === 'list' ? 'bg-blue-600 text-white shadow-sm' : 'text-slate-300 hover:text-white'
+                }`}
             >
               <List className="w-4 h-4" />
             </button>
@@ -214,7 +211,7 @@ export const ProjectsSection: React.FC = () => {
       </motion.div>
 
       {/* Active Filter Status Count */}
-      <div className="flex items-center justify-between text-xs text-white/50 mb-6 px-1">
+      <div className="flex items-center justify-between text-xs text-slate-300 mb-6 px-1">
         <span>Showing <strong className="text-blue-400 font-semibold">{filteredProjects.length}</strong> of {PROJECTS_DATA.length} projects</span>
         {(searchQuery || activeCategory !== 'All') && (
           <button
@@ -231,7 +228,7 @@ export const ProjectsSection: React.FC = () => {
         <div className="py-20 text-center rounded-2xl bg-[#090D16]/60 border border-dashed border-white/10 p-8">
           <Code2 className="w-12 h-12 text-blue-400/50 mx-auto mb-3" />
           <h3 className="text-lg font-semibold text-white">No projects found</h3>
-          <p className="text-sm text-white/60 mt-1 max-w-sm mx-auto">
+          <p className="text-sm text-slate-300 mt-1 max-w-sm mx-auto">
             No projects matched your search criteria. Try another keyword or reset filters.
           </p>
           <button
@@ -265,7 +262,7 @@ export const ProjectsSection: React.FC = () => {
                     <span className="w-2.5 h-2.5 rounded-full bg-red-500/70 inline-block" />
                     <span className="w-2.5 h-2.5 rounded-full bg-yellow-500/70 inline-block" />
                     <span className="w-2.5 h-2.5 rounded-full bg-emerald-500/70 inline-block" />
-                    <span className="ml-2 text-[11px] font-mono text-white/40 truncate max-w-[140px]">
+                    <span className="ml-2 text-[11px] font-mono text-slate-300 truncate max-w-[140px]">
                       {proj.category || 'Web Application'}
                     </span>
                   </div>
@@ -314,7 +311,7 @@ export const ProjectsSection: React.FC = () => {
                     </h3>
 
                     {/* Short Punchy Summary */}
-                    <p className="mt-2 text-xs sm:text-[13px] text-white/70 line-clamp-2 leading-relaxed font-sans">
+                    <p className="mt-2 text-xs sm:text-[13px] text-slate-100 line-clamp-2 leading-relaxed font-sans">
                       {proj.shortSummary || proj.description}
                     </p>
 
@@ -362,7 +359,7 @@ export const ProjectsSection: React.FC = () => {
                     {/* Quick Details Trigger */}
                     <button
                       onClick={() => setSelectedProjectIndex(originalIndex)}
-                      className="inline-flex items-center gap-1 text-xs font-medium text-white/60 hover:text-blue-400 transition-colors cursor-pointer"
+                      className="inline-flex items-center gap-1 text-xs font-medium text-slate-200 hover:text-blue-400 transition-colors cursor-pointer"
                     >
                       <Info className="w-3.5 h-3.5" />
                       <span>Details</span>
@@ -426,7 +423,7 @@ export const ProjectsSection: React.FC = () => {
                     {proj.title}
                   </h3>
 
-                  <p className="mt-1.5 text-xs sm:text-sm text-white/70 line-clamp-2 leading-relaxed">
+                  <p className="mt-1.5 text-xs sm:text-sm text-slate-100 line-clamp-2 leading-relaxed">
                     {proj.description}
                   </p>
 
@@ -515,7 +512,7 @@ export const ProjectsSection: React.FC = () => {
                     <button
                       onClick={handlePrevProject}
                       aria-label="Previous project"
-                      className="p-1 text-white/70 hover:text-white hover:bg-white/10 rounded transition-colors"
+                      className="p-1 text-slate-200 hover:text-white hover:bg-white/10 rounded transition-colors"
                       title="Previous Project (Left Arrow)"
                     >
                       <ChevronLeft className="w-4 h-4" />
@@ -523,7 +520,7 @@ export const ProjectsSection: React.FC = () => {
                     <button
                       onClick={handleNextProject}
                       aria-label="Next project"
-                      className="p-1 text-white/70 hover:text-white hover:bg-white/10 rounded transition-colors"
+                      className="p-1 text-slate-200 hover:text-white hover:bg-white/10 rounded transition-colors"
                       title="Next Project (Right Arrow)"
                     >
                       <ChevronRight className="w-4 h-4" />
@@ -532,7 +529,7 @@ export const ProjectsSection: React.FC = () => {
 
                   <button
                     onClick={() => setSelectedProjectIndex(null)}
-                    className="p-1.5 rounded-lg text-white/60 hover:text-white hover:bg-white/10 transition-colors"
+                    className="p-1.5 rounded-lg text-slate-200 hover:text-white hover:bg-white/10 transition-colors"
                     aria-label="Close dialog"
                   >
                     <X className="w-5 h-5" />
@@ -542,7 +539,7 @@ export const ProjectsSection: React.FC = () => {
 
               {/* Modal Body: Scrollable */}
               <div className="p-5 sm:p-7 overflow-y-auto space-y-6">
-                
+
                 {/* Screenshot Visual Frame */}
                 <div className="rounded-xl overflow-hidden border border-white/10 bg-black/80 shadow-2xl relative group">
                   <img
@@ -566,7 +563,7 @@ export const ProjectsSection: React.FC = () => {
 
                 {/* Tech Stack Breakdown */}
                 <div>
-                  <h4 className="text-xs uppercase tracking-wider text-white/50 font-semibold mb-2 flex items-center gap-2">
+                  <h4 className="text-xs uppercase tracking-wider text-slate-300 font-semibold mb-2 flex items-center gap-2">
                     <Code2 className="w-3.5 h-3.5 text-blue-400" />
                     <span>Technologies & Frameworks</span>
                   </h4>
@@ -584,11 +581,11 @@ export const ProjectsSection: React.FC = () => {
 
                 {/* Full Project Description / Case Study */}
                 <div>
-                  <h4 className="text-xs uppercase tracking-wider text-white/50 font-semibold mb-2 flex items-center gap-2">
+                  <h4 className="text-xs uppercase tracking-wider text-slate-300 font-semibold mb-2 flex items-center gap-2">
                     <CheckCircle2 className="w-3.5 h-3.5 text-blue-400" />
                     <span>Project Overview & Architecture</span>
                   </h4>
-                  <div className="p-4 rounded-xl bg-white/[0.03] border border-white/5 text-sm sm:text-base leading-relaxed text-white/90 font-sans">
+                  <div className="p-4 rounded-xl bg-white/[0.04] border border-white/10 text-sm sm:text-base leading-relaxed text-slate-100 font-sans">
                     {currentModalProject.description}
                   </div>
                 </div>
@@ -597,8 +594,8 @@ export const ProjectsSection: React.FC = () => {
 
               {/* Modal Footer */}
               <div className="px-5 sm:px-7 py-4 border-t border-white/10 bg-black/60 flex items-center justify-between gap-4">
-                <span className="text-xs text-white/40 hidden sm:inline">
-                  Tip: Use <kbd className="px-1.5 py-0.5 rounded bg-white/10 text-white/80 font-mono text-[10px]">←</kbd> and <kbd className="px-1.5 py-0.5 rounded bg-white/10 text-white/80 font-mono text-[10px]">→</kbd> to browse projects
+                <span className="text-xs text-slate-400 hidden sm:inline">
+                  Tip: Use <kbd className="px-1.5 py-0.5 rounded bg-white/10 text-white font-mono text-[10px]">←</kbd> and <kbd className="px-1.5 py-0.5 rounded bg-white/10 text-white font-mono text-[10px]">→</kbd> to browse projects
                 </span>
 
                 <div className="flex items-center gap-3 ml-auto">

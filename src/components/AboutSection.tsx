@@ -58,7 +58,7 @@ export const AboutSection: React.FC = () => {
             </span>
           </h2>
 
-          <div className="space-y-3 sm:space-y-4 text-sm sm:text-base md:text-lg text-white/90 leading-relaxed font-sans">
+          <div className="space-y-3 sm:space-y-4 text-sm sm:text-base md:text-lg text-slate-100 leading-relaxed font-sans">
             <p>
               Hello, my name is{" "}
               <span className="text-blue-500 font-semibold">

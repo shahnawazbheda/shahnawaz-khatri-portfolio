@@ -101,7 +101,7 @@ export const HeroSection: React.FC = () => {
       <div className="mt-16 sm:mt-28 pt-10 sm:pt-16 border-t border-white/5 grid grid-cols-1 lg:grid-cols-12 gap-8 sm:gap-12 items-center">
 
         {/* Left Column: Bio Paragraphs with Staggered Scroll Reveal */}
-        <div className="lg:col-span-7 space-y-4 sm:space-y-6 text-sm sm:text-base md:text-lg text-white/90 leading-relaxed font-sans font-normal">
+        <div className="lg:col-span-7 space-y-4 sm:space-y-6 text-sm sm:text-base md:text-lg text-slate-100 leading-relaxed font-sans font-normal">
           <motion.p
             initial={{ opacity: 0, y: 24 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -165,7 +165,7 @@ export const HeroSection: React.FC = () => {
           <span className="text-blue-500 drop-shadow-[0_0_15px_rgba(59,130,246,0.6)]">ME ON</span>
         </h3>
 
-        <p className="mt-2 text-sm md:text-base text-white/80 font-normal">
+        <p className="mt-2 text-sm md:text-base text-slate-200 font-normal">
           Feel free to <span className="text-blue-500 font-medium">connect</span> with me
         </p>
 

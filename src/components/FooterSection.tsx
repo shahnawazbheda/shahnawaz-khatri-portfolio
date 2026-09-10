@@ -4,7 +4,7 @@ import { SOCIAL_ITEMS } from '../data/portfolioData';
 
 export const FooterSection: React.FC = () => {
   return (
-    <footer className="relative border-t border-white/10 bg-black/80 backdrop-blur-md py-6 px-6 md:px-16 z-20 text-white/90">
+    <footer className="relative border-t border-white/10 bg-black/80 backdrop-blur-md py-6 px-6 md:px-16 z-20 text-white">
       <div className="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4 text-xs md:text-sm">
         
         {/* Left: Author Name */}
@@ -30,7 +30,7 @@ export const FooterSection: React.FC = () => {
                 target="_blank"
                 rel="noreferrer"
                 aria-label={item.name}
-                className="text-white/80 hover:text-blue-400 hover:scale-110 transition-all duration-200 cursor-pointer"
+                className="text-white hover:text-blue-400 hover:scale-110 transition-all duration-200 cursor-pointer"
               >
                 <Icon className="w-4 h-4" />
               </a>

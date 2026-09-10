@@ -84,7 +84,7 @@ export const ExperienceSection: React.FC = () => {
           </span>
         </h2>
 
-        <p className="mt-3 sm:mt-4 text-xs sm:text-sm md:text-base text-white/60 max-w-2xl mx-auto">
+        <p className="mt-3 sm:mt-4 text-xs sm:text-sm md:text-base text-slate-200 max-w-2xl mx-auto">
           Learning &nbsp;•&nbsp; Building &nbsp;•&nbsp; Growing
         </p>
       </motion.div>
@@ -112,7 +112,7 @@ export const ExperienceSection: React.FC = () => {
               <span
                 className={`px-2 sm:px-3 py-0.5 rounded-full text-[9px] sm:text-[10px] font-bold uppercase tracking-wider mb-1.5 sm:mb-2 whitespace-nowrap ${exp.isCurrent
                   ? 'bg-emerald-500/20 text-emerald-400 border border-emerald-500/40'
-                  : 'bg-white/10 text-white/60 border border-white/20'
+                  : 'bg-white/10 text-slate-200 border border-white/20'
                   }`}
               >
                 {exp.isCurrent ? 'Present' : 'Past'}
@@ -131,10 +131,10 @@ export const ExperienceSection: React.FC = () => {
                 }`}
             >
               <div className="mt-8">
-                <p className="text-sm font-semibold text-white/90">
+                <p className="text-sm font-semibold text-white">
                   {exp.startDate} – {exp.endDate}
                 </p>
-                <p className="text-xs text-white/50 mt-0.5">{exp.duration}</p>
+                <p className="text-xs text-slate-300 mt-0.5">{exp.duration}</p>
               </div>
             </div>
 
@@ -182,23 +182,23 @@ export const ExperienceSection: React.FC = () => {
                 </div>
 
                 {/* Meta Info Row — wraps gracefully on small screens */}
-                <div className="flex flex-wrap items-center gap-x-2 gap-y-1 sm:gap-3 mt-2.5 sm:mt-3 text-[11px] sm:text-xs text-white/50">
+                <div className="flex flex-wrap items-center gap-x-2 gap-y-1 sm:gap-3 mt-2.5 sm:mt-3 text-[11px] sm:text-xs text-slate-300">
                   <span className="inline-flex items-center gap-1">
                     <MapPin className="w-3 h-3 shrink-0" />
                     <span className="truncate">{exp.location}</span>
                   </span>
-                  <span className="text-white/20 hidden xs:inline">|</span>
+                  <span className="text-white/40 hidden xs:inline">|</span>
                   <span className="inline-flex items-center gap-1">
                     <Briefcase className="w-3 h-3 shrink-0" /> {exp.type}
                   </span>
-                  <span className="text-white/20 hidden xs:inline">|</span>
+                  <span className="text-white/40 hidden xs:inline">|</span>
                   <span className="inline-flex items-center gap-1">
                     <Building2 className="w-3 h-3 shrink-0" /> {exp.mode}
                   </span>
                 </div>
 
                 {/* Mobile Date — shown only on mobile/tablet */}
-                <div className="md:hidden flex flex-wrap items-center gap-x-3 gap-y-1 mt-2 text-[11px] sm:text-xs text-white/50">
+                <div className="md:hidden flex flex-wrap items-center gap-x-3 gap-y-1 mt-2 text-[11px] sm:text-xs text-slate-300">
                   <span className="inline-flex items-center gap-1">
                     <Calendar className="w-3 h-3 shrink-0" /> {exp.startDate} – {exp.endDate}
                   </span>
@@ -213,7 +213,7 @@ export const ExperienceSection: React.FC = () => {
                 {/* Bullets */}
                 <ul className="space-y-2 sm:space-y-2.5">
                   {exp.bullets.map((bullet, bIdx) => (
-                    <li key={bIdx} className="flex items-start gap-2 sm:gap-2.5 text-xs sm:text-sm text-white/80 leading-relaxed">
+                    <li key={bIdx} className="flex items-start gap-2 sm:gap-2.5 text-xs sm:text-sm text-slate-100 leading-relaxed font-normal">
                       <span className="mt-1.5 w-1.5 h-1.5 sm:w-2 sm:h-2 shrink-0 rounded-full bg-blue-500/70" />
                       {bullet}
                     </li>
@@ -233,10 +233,10 @@ export const ExperienceSection: React.FC = () => {
         transition={{ duration: 0.8, delay: 0.3 }}
         className="mt-10 sm:mt-16 flex flex-col sm:flex-row items-center justify-between max-w-5xl mx-auto px-2"
       >
-        <p className="text-xl sm:text-2xl md:text-3xl font-bold italic text-white/20 tracking-tight font-serif text-center sm:text-left">
+        <p className="text-xl sm:text-2xl md:text-3xl font-bold italic text-white/40 tracking-tight font-serif text-center sm:text-left">
           Every Experience<br />Matters
         </p>
-        <p className="text-[10px] sm:text-xs text-white/30 uppercase tracking-[0.2em] sm:tracking-[0.3em] mt-3 sm:mt-0">
+        <p className="text-[10px] sm:text-xs text-white/60 uppercase tracking-[0.2em] sm:tracking-[0.3em] mt-3 sm:mt-0">
           Build • Learn • Improve • Repeat
         </p>
       </motion.div>

@@ -127,7 +127,7 @@ export const ContactSection: React.FC = () => {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6, delay: 0.1 }}
-          className="mt-3 text-sm sm:text-base text-white/70 max-w-xl mx-auto font-normal"
+          className="mt-3 text-sm sm:text-base text-slate-200 max-w-xl mx-auto font-normal"
         >
           Have a project in mind, an opportunity, or want to say hello? Send a message and let&apos;s build something impactful together.
         </motion.p>
@@ -147,7 +147,7 @@ export const ContactSection: React.FC = () => {
           {/* Availability Status Card */}
           <div className="p-5 rounded-2xl bg-[#090D18]/90 border border-blue-500/20 backdrop-blur-md shadow-[0_8px_30px_rgba(0,0,0,0.6)]">
             <div className="flex items-center justify-between">
-              <span className="flex items-center gap-2 text-xs font-semibold tracking-wider uppercase text-white/60 font-mono">
+              <span className="flex items-center gap-2 text-xs font-semibold tracking-wider uppercase text-slate-200 font-mono">
                 <Briefcase className="w-4 h-4 text-blue-400" />
                 <span>Current Status</span>
               </span>
@@ -156,7 +156,7 @@ export const ContactSection: React.FC = () => {
                 Available for Hire
               </span>
             </div>
-            <p className="mt-3 text-xs sm:text-sm text-white/70 leading-relaxed">
+            <p className="mt-3 text-xs sm:text-sm text-slate-100 leading-relaxed">
               Actively seeking full-time frontend developer roles, Next.js / React projects, and high-growth engineering teams.
             </p>
           </div>
@@ -169,7 +169,7 @@ export const ContactSection: React.FC = () => {
                   <Mail className="w-5 h-5" />
                 </div>
                 <div>
-                  <h4 className="text-xs uppercase tracking-wider text-white/50 font-semibold">Direct Email</h4>
+                  <h4 className="text-xs uppercase tracking-wider text-slate-300 font-semibold">Direct Email</h4>
                   <a
                     href={`mailto:${PERSONAL_INFO.email}`}
                     className="text-sm sm:text-base font-semibold text-white group-hover:text-blue-400 transition-colors break-all"
@@ -183,7 +183,7 @@ export const ContactSection: React.FC = () => {
               <button
                 type="button"
                 onClick={handleCopyEmail}
-                className="p-2 rounded-lg bg-white/5 hover:bg-white/10 text-white/70 hover:text-white border border-white/10 transition-colors cursor-pointer shrink-0"
+                className="p-2 rounded-lg bg-white/5 hover:bg-white/10 text-slate-200 hover:text-white border border-white/10 transition-colors cursor-pointer shrink-0"
                 title="Copy email to clipboard"
                 aria-label="Copy email address"
               >
@@ -204,9 +204,9 @@ export const ContactSection: React.FC = () => {
                 <MapPin className="w-5 h-5" />
               </div>
               <div className="flex-1">
-                <h4 className="text-xs uppercase tracking-wider text-white/50 font-semibold">Location</h4>
+                <h4 className="text-xs uppercase tracking-wider text-slate-300 font-semibold">Location</h4>
                 <p className="text-sm font-semibold text-white mt-0.5">Gujarat, India</p>
-                <div className="mt-2 flex items-center gap-2 text-xs text-white/60">
+                <div className="mt-2 flex items-center gap-2 text-xs text-slate-200">
                   <Clock className="w-3.5 h-3.5 text-blue-400" />
                   <span>Indian Standard Time (IST, UTC+5:30)</span>
                 </div>
@@ -216,7 +216,7 @@ export const ContactSection: React.FC = () => {
 
           {/* Social Profiles Grid */}
           <div className="p-5 rounded-2xl bg-[#090D18]/90 border border-blue-500/20 backdrop-blur-md shadow-[0_8px_30px_rgba(0,0,0,0.6)]">
-            <h4 className="text-xs uppercase tracking-wider text-white/50 font-semibold mb-3">Find Me On Social Platforms</h4>
+            <h4 className="text-xs uppercase tracking-wider text-slate-300 font-semibold mb-3">Find Me On Social Platforms</h4>
             <div className="grid grid-cols-2 gap-2.5">
               {SOCIAL_ITEMS.map((item) => {
                 let Icon = Github;
@@ -230,7 +230,7 @@ export const ContactSection: React.FC = () => {
                     href={item.href}
                     target="_blank"
                     rel="noreferrer"
-                    className="flex items-center gap-2.5 px-3 py-2.5 rounded-xl bg-white/5 hover:bg-blue-600/20 border border-white/5 hover:border-blue-500/40 text-white/80 hover:text-white text-xs font-medium transition-all group cursor-pointer"
+                    className="flex items-center gap-2.5 px-3 py-2.5 rounded-xl bg-white/5 hover:bg-blue-600/20 border border-white/5 hover:border-blue-500/40 text-white hover:text-blue-300 text-xs font-medium transition-all group cursor-pointer"
                   >
                     <Icon className="w-4 h-4 text-blue-400 group-hover:scale-110 transition-transform" />
                     <span>{item.name}</span>
@@ -258,7 +258,7 @@ export const ContactSection: React.FC = () => {
             <div className="flex items-center justify-between pb-4 border-b border-white/10 mb-6">
               <div>
                 <h3 className="text-lg sm:text-xl font-bold text-white tracking-tight">Send a Message</h3>
-                <p className="text-xs text-white/60 mt-0.5">I typically respond within 24 hours.</p>
+                <p className="text-xs text-slate-200 mt-0.5">I typically respond within 24 hours.</p>
               </div>
               <div className="flex items-center gap-1.5">
                 <span className="w-2.5 h-2.5 rounded-full bg-red-500/70 inline-block" />
@@ -277,28 +277,28 @@ export const ContactSection: React.FC = () => {
                 {/* Submitted Data Summary Preview */}
                 <div className="p-4 rounded-xl bg-white/5 border border-white/10 max-w-lg mx-auto text-left text-xs space-y-2.5">
                   <div className="flex justify-between border-b border-white/10 pb-2">
-                    <span className="text-white/50">Sending To:</span>
+                    <span className="text-slate-300">Sending To:</span>
                     <span className="text-emerald-400 font-semibold font-mono">+{WHATSAPP_NUMBER}</span>
                   </div>
                   <div className="flex justify-between border-b border-white/10 pb-2">
-                    <span className="text-white/50">Sender Name:</span>
+                    <span className="text-slate-300">Sender Name:</span>
                     <span className="text-white font-medium">{formData.name}</span>
                   </div>
                   <div className="flex justify-between border-b border-white/10 pb-2">
-                    <span className="text-white/50">Sender Email:</span>
+                    <span className="text-slate-300">Sender Email:</span>
                     <span className="text-white font-medium font-mono">{formData.email}</span>
                   </div>
                   <div className="flex justify-between border-b border-white/10 pb-2">
-                    <span className="text-white/50">Topic / Subject:</span>
+                    <span className="text-slate-300">Topic / Subject:</span>
                     <span className="text-white font-medium">{formData.subject || 'General Inquiry'}</span>
                   </div>
                   <div className="pt-1">
-                    <span className="text-white/50 block mb-1">Message Content:</span>
-                    <p className="text-white/80 bg-black/40 p-2.5 rounded-lg border border-white/5 whitespace-pre-wrap leading-relaxed">{formData.message}</p>
+                    <span className="text-slate-300 block mb-1">Message Content:</span>
+                    <p className="text-white bg-black/40 p-2.5 rounded-lg border border-white/5 whitespace-pre-wrap leading-relaxed">{formData.message}</p>
                   </div>
                 </div>
 
-                <p className="text-xs sm:text-sm text-white/70 max-w-md mx-auto leading-relaxed">
+                <p className="text-xs sm:text-sm text-slate-200 max-w-md mx-auto leading-relaxed">
                   A WhatsApp chat should have opened in a new tab with your message pre-filled. Just hit send there to reach me directly.
                 </p>
 
@@ -333,7 +333,7 @@ export const ContactSection: React.FC = () => {
                 {/* Name & Email Row */}
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <div>
-                    <label htmlFor="contact-name" className="block text-xs font-medium text-white/70 mb-1.5">
+                    <label htmlFor="contact-name" className="block text-xs font-medium text-slate-200 mb-1.5">
                       Your Name <span className="text-blue-400">*</span>
                     </label>
                     <input
@@ -344,12 +344,12 @@ export const ContactSection: React.FC = () => {
                       value={formData.name}
                       onChange={handleInputChange}
                       placeholder="e.g. Alex Johnson"
-                      className="w-full px-3.5 py-2.5 rounded-xl bg-black/60 border border-white/15 focus:border-blue-500 text-sm text-white placeholder-white/30 focus:outline-none focus:ring-1 focus:ring-blue-500 transition-all"
+                      className="w-full px-3.5 py-2.5 rounded-xl bg-black/60 border border-white/15 focus:border-blue-500 text-sm text-white placeholder-slate-400 focus:outline-none focus:ring-1 focus:ring-blue-500 transition-all"
                     />
                   </div>
 
                   <div>
-                    <label htmlFor="contact-email" className="block text-xs font-medium text-white/70 mb-1.5">
+                    <label htmlFor="contact-email" className="block text-xs font-medium text-slate-200 mb-1.5">
                       Your Email <span className="text-blue-400">*</span>
                     </label>
                     <input
@@ -360,14 +360,14 @@ export const ContactSection: React.FC = () => {
                       value={formData.email}
                       onChange={handleInputChange}
                       placeholder="name@example.com"
-                      className="w-full px-3.5 py-2.5 rounded-xl bg-black/60 border border-white/15 focus:border-blue-500 text-sm text-white placeholder-white/30 focus:outline-none focus:ring-1 focus:ring-blue-500 transition-all"
+                      className="w-full px-3.5 py-2.5 rounded-xl bg-black/60 border border-white/15 focus:border-blue-500 text-sm text-white placeholder-slate-400 focus:outline-none focus:ring-1 focus:ring-blue-500 transition-all"
                     />
                   </div>
                 </div>
 
                 {/* Subject Selector / Input */}
                 <div>
-                  <label htmlFor="contact-subject" className="block text-xs font-medium text-white/70 mb-1.5">
+                  <label htmlFor="contact-subject" className="block text-xs font-medium text-slate-200 mb-1.5">
                     Subject / Topic
                   </label>
                   <select
@@ -375,7 +375,7 @@ export const ContactSection: React.FC = () => {
                     name="subject"
                     value={formData.subject}
                     onChange={handleInputChange}
-                    className="w-full px-3.5 py-2.5 rounded-xl bg-black/60 border border-white/15 focus:border-blue-500 text-sm text-white placeholder-white/30 focus:outline-none focus:ring-1 focus:ring-blue-500 transition-all cursor-pointer"
+                    className="w-full px-3.5 py-2.5 rounded-xl bg-black/60 border border-white/15 focus:border-blue-500 text-sm text-white placeholder-slate-400 focus:outline-none focus:ring-1 focus:ring-blue-500 transition-all cursor-pointer"
                   >
                     <option value="" className="bg-zinc-900 text-white">Select inquiry type (Optional)</option>
                     <option value="Full-time Opportunity" className="bg-zinc-900 text-white">Full-time Opportunity</option>
@@ -388,7 +388,7 @@ export const ContactSection: React.FC = () => {
 
                 {/* Message Field */}
                 <div>
-                  <label htmlFor="contact-message" className="block text-xs font-medium text-white/70 mb-1.5">
+                  <label htmlFor="contact-message" className="block text-xs font-medium text-slate-200 mb-1.5">
                     Your Message <span className="text-blue-400">*</span>
                   </label>
                   <textarea
@@ -399,7 +399,7 @@ export const ContactSection: React.FC = () => {
                     value={formData.message}
                     onChange={handleInputChange}
                     placeholder="Describe your project, question, or opportunity..."
-                    className="w-full px-3.5 py-2.5 rounded-xl bg-black/60 border border-white/15 focus:border-blue-500 text-sm text-white placeholder-white/30 focus:outline-none focus:ring-1 focus:ring-blue-500 transition-all resize-none"
+                    className="w-full px-3.5 py-2.5 rounded-xl bg-black/60 border border-white/15 focus:border-blue-500 text-sm text-white placeholder-slate-400 focus:outline-none focus:ring-1 focus:ring-blue-500 transition-all resize-none"
                   />
                 </div>
 
@@ -420,7 +420,7 @@ export const ContactSection: React.FC = () => {
                       )}&body=${encodeURIComponent(
                         `Hi Shahnawaz,\n\n${formData.message || 'I would like to get in touch regarding opportunities.'}\n\nBest regards,\n\nName :- ${formData.name || 'Your Name'}\nEmail :- ${formData.email || 'your.email@example.com'}\nSubject :- ${formData.subject || 'General Inquiry'}`
                       )}`}
-                      className="w-full sm:w-auto inline-flex items-center justify-center gap-1.5 px-4 py-3 rounded-xl bg-white/5 hover:bg-white/10 text-white/70 hover:text-white text-xs font-medium border border-white/10 transition-colors"
+                      className="w-full sm:w-auto inline-flex items-center justify-center gap-1.5 px-4 py-3 rounded-xl bg-white/5 hover:bg-white/10 text-slate-200 hover:text-white text-xs font-medium border border-white/10 transition-colors"
                       title="Compose draft directly in your Gmail / Email App"
                     >
                       <Mail className="w-3.5 h-3.5 text-blue-400" />
@@ -428,9 +428,9 @@ export const ContactSection: React.FC = () => {
                     </a>
                   </div>
 
-                  <span className="text-[11px] text-white/50 flex items-center gap-1.5 font-mono">
+                  <span className="text-[11px] text-slate-300 flex items-center gap-1.5 font-mono">
                     <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 shrink-0" />
-                    <span>Delivers to: <strong className="text-white/80 font-normal">+{WHATSAPP_NUMBER}</strong></span>
+                    <span>Delivers to: <strong className="text-white font-normal">+{WHATSAPP_NUMBER}</strong></span>
                   </span>
                 </div>
               </form>
