@@ -78,6 +78,18 @@ export const ProjectsSection: React.FC = () => {
     return () => window.removeEventListener('keydown', handleKeyDown);
   }, [selectedProjectIndex]);
 
+  // Lock body scroll when modal is open
+  useEffect(() => {
+    if (selectedProjectIndex !== null) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = '';
+    }
+    return () => {
+      document.body.style.overflow = '';
+    };
+  }, [selectedProjectIndex]);
+
   // Tech pill badge color mapping
   const getTechBadgeClass = (tech: string) => {
     const lower = tech.toLowerCase();
@@ -91,7 +103,7 @@ export const ProjectsSection: React.FC = () => {
   };
 
   return (
-    <section id="project" className="relative pt-24 pb-32 px-4 sm:px-6 md:px-12 max-w-7xl mx-auto z-10">
+    <section id="project" className="relative pt-10 pb-10 px-4 sm:px-6 md:px-12 max-w-7xl mx-auto z-10">
       
       {/* Section Header */}
       <div className="text-center max-w-3xl mx-auto mb-12">

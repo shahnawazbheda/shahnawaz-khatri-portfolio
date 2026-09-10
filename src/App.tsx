@@ -3,6 +3,7 @@ import { Starfield } from './components/Starfield';
 import { Navbar } from './components/Navbar';
 import { HeroSection } from './components/HeroSection';
 import { AboutSection } from './components/AboutSection';
+import { ExperienceSection } from './components/ExperienceSection';
 import { ProjectsSection } from './components/ProjectsSection';
 import { ContactSection } from './components/ContactSection';
 import { FooterSection } from './components/FooterSection';
@@ -27,6 +28,9 @@ export default function App() {
 
         {/* Know Who I'M, Outdoor Photo, Resume/Hire, Professional Skillset */}
         <AboutSection />
+
+        {/* Professional Journey Timeline */}
+        <ExperienceSection />
 
         {/* My Recent Works, Project Showcase with Filter & Lightbox */}
         <ProjectsSection />

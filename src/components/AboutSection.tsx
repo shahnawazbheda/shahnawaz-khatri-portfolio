@@ -19,10 +19,10 @@ export const AboutSection: React.FC = () => {
   };
 
   return (
-    <section id="about" className="relative pt-24 pb-20 px-6 md:px-16 max-w-7xl mx-auto z-10">
+    <section id="about" className="relative pt-10 pb-8 px-4 sm:px-6 md:px-16 max-w-7xl mx-auto z-10">
 
       {/* 1. Know Who I'M Section (from Screenshot 2) */}
-      <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-14 items-center">
+      <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 sm:gap-12 lg:gap-14 items-center">
 
         {/* Left Column: Portrait Photo with Scroll Slide-In from Left */}
         <div className="lg:col-span-5 flex justify-center lg:justify-start">
@@ -31,7 +31,7 @@ export const AboutSection: React.FC = () => {
             whileInView={{ opacity: 1, x: 0, scale: 1 }}
             viewport={{ once: true, amount: 0.25 }}
             transition={{ duration: 0.7, ease: "easeOut" }}
-            className="relative w-full max-w-[340px] aspect-[4/5] rounded-2xl overflow-hidden border border-blue-500/40 shadow-[0_0_30px_rgba(37,99,235,0.3)] bg-[#0A0D14] group"
+            className="relative w-full max-w-[260px] sm:max-w-[300px] md:max-w-[340px] aspect-[4/5] rounded-2xl overflow-hidden border border-blue-500/40 shadow-[0_0_30px_rgba(37,99,235,0.3)] bg-[#0A0D14] group"
           >
             <img
               src="/shahnawaz-outdoor.jpg"
@@ -51,14 +51,14 @@ export const AboutSection: React.FC = () => {
           transition={{ duration: 0.7, ease: "easeOut" }}
           className="lg:col-span-7 flex flex-col justify-center space-y-6"
         >
-          <h2 className="text-3xl md:text-5xl font-bold tracking-tight text-white">
+          <h2 className="text-2xl sm:text-3xl md:text-5xl font-bold tracking-tight text-white">
             Know Who{" "}
             <span className="text-blue-500 font-extrabold drop-shadow-[0_0_15px_rgba(59,130,246,0.5)]">
               I AM
             </span>
           </h2>
 
-          <div className="space-y-4 text-base md:text-lg text-white/90 leading-relaxed font-sans">
+          <div className="space-y-3 sm:space-y-4 text-sm sm:text-base md:text-lg text-white/90 leading-relaxed font-sans">
             <p>
               Hello, my name is{" "}
               <span className="text-blue-500 font-semibold">
@@ -115,7 +115,7 @@ export const AboutSection: React.FC = () => {
       </div>
 
       {/* 2. Professional Skillset Section with Staggered Scroll Reveal */}
-      <div className="mt-32">
+      <div className="mt-16 sm:mt-24 md:mt-32">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -123,13 +123,13 @@ export const AboutSection: React.FC = () => {
           transition={{ duration: 0.6, ease: "easeOut" }}
           className="text-center mb-14"
         >
-          <h2 className="text-3xl md:text-5xl font-bold tracking-tight text-white">
+          <h2 className="text-2xl sm:text-3xl md:text-5xl font-bold tracking-tight text-white">
             Professional <span className="text-blue-500 font-extrabold drop-shadow-[0_0_15px_rgba(59,130,246,0.5)]">Skillset</span>
           </h2>
         </motion.div>
 
         {/* 8 Skillset Cards Grid (2 rows x 4 cols on desktop) */}
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-6 max-w-5xl mx-auto">
+        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4 sm:gap-6 max-w-5xl mx-auto">
           {SKILL_ITEMS.map((skill, index) => (
             <motion.div
               key={skill.name}
@@ -142,7 +142,7 @@ export const AboutSection: React.FC = () => {
                 ease: "easeOut"
               }}
               whileHover={{ y: -6, scale: 1.03 }}
-              className="group relative h-36 rounded-2xl bg-black border border-blue-500/50 flex items-center justify-center p-6 transition-all duration-300 shadow-[0_4px_25px_rgba(37,99,235,0.35)] hover:shadow-[0_6px_35px_rgba(59,130,246,0.75)] hover:border-blue-400 cursor-default"
+              className="group relative h-28 sm:h-36 rounded-xl sm:rounded-2xl bg-black border border-blue-500/50 flex items-center justify-center p-4 sm:p-6 transition-all duration-300 shadow-[0_4px_25px_rgba(37,99,235,0.35)] hover:shadow-[0_6px_35px_rgba(59,130,246,0.75)] hover:border-blue-400 cursor-default"
             >
               {/* Inner blue glow accent on hover */}
               <div className="absolute inset-0 rounded-2xl bg-blue-500/10 opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none" />
@@ -150,7 +150,7 @@ export const AboutSection: React.FC = () => {
               <div className="relative z-10 flex flex-col items-center justify-center">
                 <TechIcon
                   name={skill.iconName}
-                  className="w-14 h-14 md:w-16 md:h-16 text-white group-hover:scale-110 transition-transform duration-300"
+                  className="w-10 h-10 sm:w-14 sm:h-14 md:w-16 md:h-16 text-white group-hover:scale-110 transition-transform duration-300"
                   color={skill.iconName === 'nextjs' || skill.iconName === 'github' ? '#ffffff' : undefined}
                 />
               </div>

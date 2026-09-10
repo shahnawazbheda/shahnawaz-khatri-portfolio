@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Home, User, Monitor, Mail, Menu, X } from 'lucide-react';
+import { Home, User, Briefcase, Monitor, Mail, Menu, X } from 'lucide-react';
 
 interface NavbarProps {
   activeTab?: string;
@@ -15,7 +15,7 @@ export const Navbar: React.FC<NavbarProps> = ({ activeTab, onSelectTab }) => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 20);
 
-      const sections = ["home", "about", "project", "contact"];
+      const sections = ["home", "about", "experience", "project", "contact"];
       const scrollPosition = window.scrollY + 180;
 
       for (let i = sections.length - 1; i >= 0; i--) {
@@ -45,6 +45,7 @@ export const Navbar: React.FC<NavbarProps> = ({ activeTab, onSelectTab }) => {
   const navItems = [
     { id: "home", label: "Home", icon: Home },
     { id: "about", label: "About", icon: User },
+    { id: "experience", label: "Experience", icon: Briefcase },
     { id: "project", label: "Project", icon: Monitor },
     { id: "contact", label: "Contact", icon: Mail }
   ];
@@ -54,7 +55,7 @@ export const Navbar: React.FC<NavbarProps> = ({ activeTab, onSelectTab }) => {
   return (
     <header
       id="main-navbar"
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 py-3.5 px-6 md:px-16 ${isScrolled
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 py-3 sm:py-3.5 px-4 sm:px-6 md:px-16 ${isScrolled
           ? 'bg-black/90 backdrop-blur-md border-b border-white/10 shadow-[0_4px_20px_rgba(0,0,0,0.8)]'
           : 'bg-black/40 backdrop-blur-sm'
         }`}
@@ -62,7 +63,7 @@ export const Navbar: React.FC<NavbarProps> = ({ activeTab, onSelectTab }) => {
       <div className="max-w-7xl mx-auto flex items-center justify-between">
 
         {/* Desktop Nav Links - centered, larger font */}
-        <nav className="hidden md:flex flex-1 items-center justify-center gap-12 text-lg md:text-xl font-semibold">
+        <nav className="hidden md:flex flex-1 items-center justify-center gap-6 lg:gap-10 text-base lg:text-lg font-semibold">
           {navItems.map((item) => {
             const Icon = item.icon;
             const isActive = activeId === item.id;

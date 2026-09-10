@@ -49,12 +49,17 @@ export const ContactSection: React.FC = () => {
   };
 
   const buildWhatsAppMessage = () => {
-    const name = formData.name.trim();
-    const email = formData.email.trim();
-    const subject = formData.subject.trim() || 'a general inquiry';
-    const message = formData.message.trim();
-
-    return `Hi Shahnawaz, my name is ${name} (${email}). I'm reaching out about ${subject}. ${message}`;
+    const lines = [
+      `Hi Shahnawaz, I'm reaching out via your portfolio.`,
+      '',
+      `Name: ${formData.name}`,
+      `Email: ${formData.email}`,
+      `Subject: ${formData.subject || 'General Inquiry'}`,
+      '',
+      `Message:`,
+      formData.message
+    ];
+    return lines.join('\n');
   };
 
   const getWhatsAppUrl = () => {
@@ -92,10 +97,10 @@ export const ContactSection: React.FC = () => {
   };
 
   return (
-    <section id="contact" className="relative pt-24 pb-32 px-4 sm:px-6 md:px-12 max-w-7xl mx-auto z-10">
+    <section id="contact" className="relative pt-10 pb-10 px-4 sm:px-6 md:px-12 max-w-7xl mx-auto z-10">
 
       {/* Section Header */}
-      <div className="text-center max-w-3xl mx-auto mb-16">
+      <div className="text-center max-w-3xl mx-auto mb-10 sm:mb-16">
         <motion.div
           initial={{ opacity: 0, y: -15 }}
           whileInView={{ opacity: 1, y: 0 }}
