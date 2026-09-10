@@ -41,8 +41,8 @@ const EXPERIENCE_DATA: ExperienceItem[] = [
   {
     id: 2,
     role: "Internship",
-    company: "TechnoComet Solutions",
-    companyUrl: "https://technocometsolutions.com",
+    company: "Imbuesoft",
+    companyUrl: "https://www.linkedin.com/company/imbuesoft",
     location: "Rajkot, Gujarat, India",
     type: "Internship",
     mode: "On-site",
@@ -111,8 +111,8 @@ export const ExperienceSection: React.FC = () => {
               {/* Status Badge */}
               <span
                 className={`px-2 sm:px-3 py-0.5 rounded-full text-[9px] sm:text-[10px] font-bold uppercase tracking-wider mb-1.5 sm:mb-2 whitespace-nowrap ${exp.isCurrent
-                    ? 'bg-emerald-500/20 text-emerald-400 border border-emerald-500/40'
-                    : 'bg-white/10 text-white/60 border border-white/20'
+                  ? 'bg-emerald-500/20 text-emerald-400 border border-emerald-500/40'
+                  : 'bg-white/10 text-white/60 border border-white/20'
                   }`}
               >
                 {exp.isCurrent ? 'Present' : 'Past'}
@@ -120,8 +120,8 @@ export const ExperienceSection: React.FC = () => {
 
               {/* Dot */}
               <div className={`w-3 h-3 sm:w-4 sm:h-4 rounded-full border-2 ${exp.isCurrent
-                  ? 'bg-blue-500 border-blue-400 shadow-[0_0_12px_rgba(59,130,246,0.7)]'
-                  : 'bg-white/20 border-white/40'
+                ? 'bg-blue-500 border-blue-400 shadow-[0_0_12px_rgba(59,130,246,0.7)]'
+                : 'bg-white/20 border-white/40'
                 }`} />
             </div>
 
